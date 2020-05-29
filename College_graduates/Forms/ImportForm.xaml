@@ -1,0 +1,65 @@
+﻿<Window x:Class="College_graduates.Forms.ImportForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:College_graduates.Forms"
+        mc:Ignorable="d"
+        Title="Импорт выпускников" Height="600" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="Справка:
+                   Импорт работает только на текущий год. Будет просматриваться список студентов последних курсов всех специальностей. Этот список вы видите слева." TextWrapping="Wrap" Margin="5" Grid.RowSpan="10"/>
+
+        <Button Grid.Column="1" Grid.Row="10" Content="Импорт" Margin="5,5" Command="{Binding Import}" Click="Button_Click" ToolTip="Добавляет студентов с левого списка в на текущий год выпускников."/>
+
+        <Button Grid.Column="1" Grid.Row="4" Margin="5,10" Content="&lt;&lt; Добавить" ToolTip="Перенос выбранного студента с правого списка в левый"
+                Command="{Binding AddGraduate}"/>
+        <Button Grid.Column="1" Grid.Row="5" Margin="5,10" Content="Удалить &gt;&gt;" ToolTip="Перенос выбранного студента с левого списка в правый"
+                Command="{Binding RemoveGraduate}"/>
+
+        <DataGrid Grid.Column="0" Grid.RowSpan="11" Margin="5,5" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" 
+                  Background="White" RowBackground="White" 
+                  CanUserAddRows="False" SelectionMode="Single"
+                  ItemsSource="{Binding AddGraduates}"
+                  SelectedItem="{Binding RemovedGraduate}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Фамилия}" Header="Фамилия"/>
+                <DataGridTextColumn Binding="{Binding Имя}" Header="Имя"/>
+                <DataGridTextColumn Binding="{Binding Отчество}" Header="Отчество"/>
+                <DataGridTextColumn Binding="{Binding Специальность.Название_специальности}" Header="Специальность"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Column="3" Grid.RowSpan="11" Margin="5,5" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" 
+                  Background="White" RowBackground="White" 
+                  CanUserAddRows="False" SelectionMode="Single"
+                  ItemsSource="{Binding RemoveGraduates}"
+                  SelectedItem="{Binding AddedGraduate}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Фамилия}" Header="Фамилия"/>
+                <DataGridTextColumn Binding="{Binding Имя}" Header="Имя"/>
+                <DataGridTextColumn Binding="{Binding Отчество}" Header="Отчество"/>
+                <DataGridTextColumn Binding="{Binding Специальность.Название_специальности}" Header="Специальность"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

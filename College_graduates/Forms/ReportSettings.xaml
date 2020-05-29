@@ -1,0 +1,68 @@
+﻿<Window x:Class="College_graduates.Reports.ReportSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:College_graduates.Reports"
+        mc:Ignorable="d"
+        Title="Параметры отчета" Height="275" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <GroupBox Header="ВЫБЕРИТЕ ПАРАМЕТРЫ ДЛЯ ОТЧЕТА">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Год выпуска" Margin="5,5" HorizontalAlignment="Right"/>
+                <ComboBox Grid.Column="1" Grid.Row="0" Margin="5,5" IsEditable="True" x:Name="cbYears"
+                          ItemsSource="{Binding Years}"
+                          DisplayMemberPath="Номер_года"
+                          SelectedValuePath="ID_Года"
+                          SelectedItem="{Binding SelectedYear}" FontSize="14"
+                />
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Период" Margin="5,5" HorizontalAlignment="Right"/>
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Text="-" Margin="5,5" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold"/>
+                    <DatePicker Grid.Column="0" Margin="5,5" x:Name="dpFrom" FontSize="14"
+                                SelectedDate="{Binding SelectedDateFrom}"/>
+                    <DatePicker Grid.Column="2" Margin="5,5" x:Name="dpTo" FontSize="14"
+                                SelectedDate="{Binding SelectedDateTo}"/>
+                </Grid>
+
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Специальность" Margin="5,5" HorizontalAlignment="Right"/>
+                <ComboBox Grid.Column="1" Grid.Row="2" Margin="5,5" IsEditable="True" x:Name="cbSpecialtys"
+                          ItemsSource="{Binding Specialtys}"
+                          DisplayMemberPath="Название_специальности"
+                          SelectedValuePath="ID_Специальности"
+                          SelectedItem="{Binding SelectedSpecialty}" FontSize="14"
+                />
+
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Предприятие" Margin="5,5" HorizontalAlignment="Right"/>
+                <ComboBox Grid.Column="1" Grid.Row="3" Margin="5,5" IsEditable="True" x:Name="cbOrganizations"
+                          ItemsSource="{Binding Organizations}"
+                          DisplayMemberPath="Наименование"
+                          SelectedValuePath="ID_Организации"
+                          SelectedItem="{Binding SelectedOrganization}" FontSize="14"
+                />
+
+                <Button Grid.Column="1" Grid.Row="4" Content="Сформировать отчет" Margin="5,5" x:Name="btnForm" Click="btnForm_Click"
+                        Command="{Binding FormReport}"
+                        CommandParameter="{Binding Type}"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
