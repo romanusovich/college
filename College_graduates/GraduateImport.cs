@@ -53,7 +53,7 @@ namespace College_graduates
                         if (item.Название_специальности.ToLower() == "ПОИТ".ToLower()) { digit.Value = 4; }
                         if (item.Название_специальности.ToLower() == "БУАиК".ToLower()) { digit.Value = 3; }
                         if (item.Название_специальности.ToLower() == "ОДВЛ".ToLower()) { digit.Value = 3; }
-                        if (item.Название_специальности.ToLower() == "ПРАВО".ToLower()) { digit.Value = 2; }
+                        if (item.Название_специальности.ToLower() == "ПРАВО".ToLower()) { digit.Value = 3; } // Сразу зачисляются на 2 курс и заканчивают на 3
                         cmd.Parameters.Add(digit);
 
                         using (DbDataReader reader = cmd.ExecuteReader())
