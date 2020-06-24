@@ -36,12 +36,12 @@ namespace College_graduates
 
                     foreach (var item in db.Специальности.Local.ToList())
                     {
-                        string sql = "SELECT Student.Fam, Student.Name, Student.Surname, LOWER(Specialnost.NazvanieB), Kyrs.NomerKyrsa " +
+                        string sql = "SELECT Student.Fam, Student.Name, Student.Surname, LOWER(Specialnost.Nazvanie), Kyrs.NomerKyrsa " +
                             "FROM Gryppa INNER JOIN " +
                             "Kyrs ON Gryppa.IdKyrs = Kyrs.IdKyrs INNER JOIN " +
                             "Student ON Gryppa.IdGryppa = Student.IdGryppa INNER JOIN " +
                             "Specialnost ON Gryppa.IdSpecialnost = Specialnost.IdSpecialnost " +
-                            "WHERE(Specialnost.NazvanieB = @Specialty) AND (Kyrs.NomerKyrsa = @Digit)";
+                            "WHERE(Specialnost.Nazvanie = @Specialty) AND (Kyrs.NomerKyrsa = @Digit)";
 
                         SqlCommand cmd = new SqlCommand(sql, con);
 
@@ -52,8 +52,8 @@ namespace College_graduates
                         digit.Value = 3;
                         if (item.Название_специальности.ToLower() == "ПОИТ".ToLower()) { digit.Value = 4; }
                         if (item.Название_специальности.ToLower() == "БУАиК".ToLower()) { digit.Value = 3; }
-                        if (item.Название_специальности.ToLower() == "ОДвЛ".ToLower()) { digit.Value = 3; }
-                        if (item.Название_специальности.ToLower() == "Правоведение".ToLower()) { digit.Value = 2; }
+                        if (item.Название_специальности.ToLower() == "ОДВЛ".ToLower()) { digit.Value = 3; }
+                        if (item.Название_специальности.ToLower() == "ПРАВО".ToLower()) { digit.Value = 2; }
                         cmd.Parameters.Add(digit);
 
                         using (DbDataReader reader = cmd.ExecuteReader())
